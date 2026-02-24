@@ -6,6 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("api/v1/users")
 public class UserController {
@@ -25,6 +27,13 @@ public class UserController {
    public ResponseEntity<User> findById(@PathVariable Long id){
         User savedUser = userService.BuscarPorId(id);
         return ResponseEntity.ok(savedUser);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<User>> findAll(){
+        List<User> savedUsers = userService.BuscarTodos();
+        return ResponseEntity.ok(savedUsers);
+
     }
 
     @PatchMapping("/{id}")
