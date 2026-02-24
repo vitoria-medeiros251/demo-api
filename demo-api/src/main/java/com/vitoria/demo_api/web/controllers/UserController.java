@@ -26,4 +26,15 @@ public class UserController {
         User savedUser = userService.BuscarPorId(id);
         return ResponseEntity.ok(savedUser);
     }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<User> updatepassword(@PathVariable Long id,@RequestBody User user){
+        User savedUser = userService.EditarSenha(id,user.getPassword());
+        return ResponseEntity.ok(savedUser);
+    }
+
+
+
+
+
 }

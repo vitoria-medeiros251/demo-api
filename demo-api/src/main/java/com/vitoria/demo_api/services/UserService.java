@@ -25,4 +25,18 @@ public class UserService {
         );
   }
 
+  @Transactional
+  public User EditarSenha(Long id, String password){
+      User savedUser = BuscarPorId(id);
+      savedUser.setPassword(password);
+      return savedUser;
+  }
+
+
+
+
+
+
+
+
 }
