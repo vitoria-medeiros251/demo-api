@@ -18,5 +18,11 @@ public class UserService {
     return userRepository.save(user);
   }
 
+  @Transactional(readOnly = true)
+  public User BuscarPorId(Long id ){
+        return userRepository.findById(id).orElseThrow(
+                ()-> new RuntimeException("Usuario não encontrado")
+        );
+  }
 
 }
