@@ -4,7 +4,7 @@
 
 Este repositório contém o código  que esta sendo desenvolvido durante um curso focado em **Spring Boot** e **Spring Security**, com o objetivo de aprimorar habilidades profissionais na criação de APIs REST.
 
-## nome do curso da udemy é 
+## Nome do curso da udemy é 
 API REST e Spring Boot: Aprenda do Zero e na Prática do Marcio Hallen
 
 ## 🎯 Objetivos de Aprendizado
