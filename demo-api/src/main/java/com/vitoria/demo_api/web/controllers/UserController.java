@@ -1,6 +1,10 @@
 package com.vitoria.demo_api.web.controllers;
 import com.vitoria.demo_api.doman.User;
 import com.vitoria.demo_api.services.UserService;
+import com.vitoria.demo_api.web.controllers.dtos.UserCreateDTO;
+import com.vitoria.demo_api.web.controllers.dtos.UserResponseDTO;
+import com.vitoria.demo_api.web.controllers.dtos.UserSenhaDTO;
+import com.vitoria.demo_api.web.controllers.mapper.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,16 +21,16 @@ public class UserController {
 
 
     @PostMapping
-    public ResponseEntity<User> create(@RequestBody User user){
-        User savedUser = userService.salvar(user);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
+    public ResponseEntity<UserResponseDTO> create(@RequestBody UserCreateDTO userCreateDTO){
+        User savedUser = userService.salvar(UserMapper.toUser(userCreateDTO));
+        return ResponseEntity.status(HttpStatus.CREATED).body(UserMapper.toDTO(savedUser));
     }
 
 
     @GetMapping("/{id}")
-   public ResponseEntity<User> findById(@PathVariable Long id){
+   public ResponseEntity<UserResponseDTO> findById(@PathVariable Long id){
         User savedUser = userService.BuscarPorId(id);
-        return ResponseEntity.ok(savedUser);
+        return ResponseEntity.ok(UserMapper.toDTO(savedUser));
     }
 
     @GetMapping
@@ -37,9 +41,9 @@ public class UserController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<User> updatepassword(@PathVariable Long id,@RequestBody User user){
-        User savedUser = userService.EditarSenha(id,user.getPassword());
-        return ResponseEntity.ok(savedUser);
+    public ResponseEntity<Void> updatepassword(@PathVariable Long id, @RequestBody UserSenhaDTO dto){
+        User savedUser = userService.EditarSenha(id, dto.getSenhaAtual(),dto.getNovaSenha(),dto.getConfirmaSenha());
+        return ResponseEntity.noContent().build();
     }
 
 
