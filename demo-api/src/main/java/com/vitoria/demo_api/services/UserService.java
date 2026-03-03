@@ -28,10 +28,16 @@ public class UserService {
   }
 
   @Transactional
-  public User EditarSenha(Long id, String password){
-      User savedUser = BuscarPorId(id);
-      savedUser.setPassword(password);
-      return savedUser;
+  public User EditarSenha(Long id, String senhaAtual, String novaSenha, String confirmaSenha){
+        if(!novaSenha.equals(confirmaSenha)){
+            throw new RuntimeException("Nova senha não confere com a confirmação de senha");
+        }
+        User savedUser = BuscarPorId(id);
+        if(!savedUser.getPassword().equals(senhaAtual)) {
+            throw new RuntimeException("Senha atual incorreta");
+        }
+        savedUser.setPassword(novaSenha);
+        return userRepository.save(savedUser);
   }
 
   @Transactional(readOnly = true)
