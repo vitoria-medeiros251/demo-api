@@ -34,9 +34,9 @@ public class UserController {
     }
 
     @GetMapping
-    public ResponseEntity<List<User>> findAll(){
-        List<User> savedUsers = userService.BuscarTodos();
-        return ResponseEntity.ok(savedUsers);
+    public ResponseEntity<List<UserResponseDTO>> findAll(){
+        List<User> savedUser = userService.BuscarTodos();
+        return ResponseEntity.ok(UserMapper.toListDto(savedUser));
 
     }
 

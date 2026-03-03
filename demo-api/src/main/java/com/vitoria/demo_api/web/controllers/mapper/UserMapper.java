@@ -6,6 +6,9 @@ import com.vitoria.demo_api.web.controllers.dtos.UserResponseDTO;
 import org.modelmapper.ModelMapper;
 import org.modelmapper.PropertyMap;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class UserMapper {
 
     public static User toUser(UserCreateDTO userCreateDTO){
@@ -24,4 +27,12 @@ public class UserMapper {
         mapper.addMappings(props);
         return mapper.map(user, UserResponseDTO.class);
     }
+
+    public static List<UserResponseDTO> toListDto(List<User> user){
+       return user.stream().map(savedUser -> toDTO(savedUser)).collect(Collectors.toList());
+    }
+
+
+
+
 }
