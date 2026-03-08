@@ -42,7 +42,7 @@ public class UserController {
     }
 
     @PatchMapping("/{id}")
-    public ResponseEntity<Void> updatepassword(@PathVariable Long id, @RequestBody UserSenhaDTO dto){
+    public ResponseEntity<Void> updatepassword(@PathVariable Long id,@Valid @RequestBody UserSenhaDTO dto){
         User savedUser = userService.EditarSenha(id, dto.getSenhaAtual(),dto.getNovaSenha(),dto.getConfirmaSenha());
         return ResponseEntity.noContent().build();
     }
