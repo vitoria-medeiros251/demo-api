@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class UserCreateDTO {
     @NotBlank
-    @Email(message = "email invalido")
+    @Email(message = "email invalido", regexp = "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")
     private String username;
     @NotBlank
     @Size(min = 6, max = 6)
