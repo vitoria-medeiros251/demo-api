@@ -5,6 +5,7 @@ import com.vitoria.demo_api.web.controllers.dtos.UserCreateDTO;
 import com.vitoria.demo_api.web.controllers.dtos.UserResponseDTO;
 import com.vitoria.demo_api.web.controllers.dtos.UserSenhaDTO;
 import com.vitoria.demo_api.web.controllers.mapper.UserMapper;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,7 @@ public class UserController {
 
 
     @PostMapping
-    public ResponseEntity<UserResponseDTO> create(@RequestBody UserCreateDTO userCreateDTO){
+    public ResponseEntity<UserResponseDTO> create(@Valid @RequestBody UserCreateDTO userCreateDTO){
         User savedUser = userService.salvar(UserMapper.toUser(userCreateDTO));
         return ResponseEntity.status(HttpStatus.CREATED).body(UserMapper.toDTO(savedUser));
     }
