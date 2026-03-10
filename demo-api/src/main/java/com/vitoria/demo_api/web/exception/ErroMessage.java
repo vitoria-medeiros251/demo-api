@@ -1,4 +1,5 @@
 package com.vitoria.demo_api.web.exception;
+import com.fasterxml.jackson.annotation.JsonInclude;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.*;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,7 @@ public class ErroMessage {
     private int status;
     private String statusText;
     private String message;
+    @JsonInclude(JsonInclude.Include.NON_NULL)
     private Map<String,String> errors;
 
     public static ErroMessage of(HttpServletRequest request, HttpStatus status, String message, BindingResult result){
