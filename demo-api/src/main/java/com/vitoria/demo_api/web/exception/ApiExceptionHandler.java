@@ -1,4 +1,5 @@
 package com.vitoria.demo_api.web.exception;
+import com.vitoria.demo_api.exception.EntityNotFoundException;
 import com.vitoria.demo_api.exception.UsernameUniqueViolationException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
@@ -13,6 +14,17 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 @Slf4j
 @RestControllerAdvice
 public class ApiExceptionHandler {
+    @ExceptionHandler(EntityNotFoundException.class)
+    public ResponseEntity<ErroMessage> entityNotFoundException(RuntimeException ex, HttpServletRequest request){
+
+        log.error("API ERROR - ",ex);
+        return ResponseEntity
+                .status(HttpStatus.NOT_FOUND)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(new ErroMessage(request.getRequestURI(), request.getMethod(), HttpStatus.NOT_FOUND.value(), HttpStatus.NOT_FOUND.getReasonPhrase(), ex.getMessage(), null));
+
+    }
+
     @ExceptionHandler(UsernameUniqueViolationException.class)
     public ResponseEntity<ErroMessage> uniqueViolationException(RuntimeException ex, HttpServletRequest request){
 
@@ -23,7 +35,6 @@ public class ApiExceptionHandler {
                 .body(new ErroMessage(request.getRequestURI(), request.getMethod(), HttpStatus.CONFLICT.value(), HttpStatus.CONFLICT.getReasonPhrase(), ex.getMessage(), null));
 
     }
-
 
 
     @ExceptionHandler(MethodArgumentNotValidException.class)
