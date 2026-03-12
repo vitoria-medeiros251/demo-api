@@ -1,6 +1,6 @@
 package com.vitoria.demo_api.repositories;
 
-import com.vitoria.demo_api.doman.User;
+import com.vitoria.demo_api.domain.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;

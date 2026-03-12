@@ -1,5 +1,5 @@
 package com.vitoria.demo_api.web.controllers;
-import com.vitoria.demo_api.doman.User;
+import com.vitoria.demo_api.domain.User;
 import com.vitoria.demo_api.services.UserService;
 import com.vitoria.demo_api.web.controllers.dtos.UserCreateDTO;
 import com.vitoria.demo_api.web.controllers.dtos.UserResponseDTO;
@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("api/v1/users")
+@RequestMapping("/api/v1/users")
 public class UserController {
 
     @Autowired

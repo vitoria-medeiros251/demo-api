@@ -1,5 +1,5 @@
 package com.vitoria.demo_api.services;
-import com.vitoria.demo_api.doman.User;
+import com.vitoria.demo_api.domain.User;
 import com.vitoria.demo_api.exception.EntityNotFoundException;
 import com.vitoria.demo_api.exception.UsernameUniqueViolationException;
 import com.vitoria.demo_api.repositories.UserRepository;

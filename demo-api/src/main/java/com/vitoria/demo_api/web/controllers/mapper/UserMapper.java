@@ -1,6 +1,5 @@
 package com.vitoria.demo_api.web.controllers.mapper;
-
-import com.vitoria.demo_api.doman.User;
+import com.vitoria.demo_api.domain.User;
 import com.vitoria.demo_api.web.controllers.dtos.UserCreateDTO;
 import com.vitoria.demo_api.web.controllers.dtos.UserResponseDTO;
 import org.modelmapper.ModelMapper;
