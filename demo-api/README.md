@@ -25,6 +25,17 @@ Este repositório contém o código desenvolvido durante um curso focado em **Sp
 - WebTestClient
 - Maven
 
+## 🖥️ Acessando o Frontend
+
+> ⚠️ Não abra o `index.html` diretamente pelo IntelliJ (porta 63342), pois o CSS e o JS não vão funcionar corretamente.
+
+1. Inicie a aplicação pelo IntelliJ clicando no botão ▶ (Run)
+2. Acesse no navegador:
+
+```
+http://localhost:8080
+```
+
 ## 🚀 Como Executar
 
 ```bash
