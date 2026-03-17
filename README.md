@@ -40,6 +40,17 @@ cd demo-api
 # Execute o projeto
 mvn spring-boot:run
 ```
+## 🖥️ Acessando o Frontend
+
+> ⚠️ Não abra o `index.html` diretamente pelo IntelliJ (porta 63342), pois o CSS e o JS não vão funcionar corretamente.
+
+1. Inicie a aplicação pelo IntelliJ clicando no botão ▶ (Run)
+2. Acesse no navegador:
+
+```
+http://localhost:8080
+```
+
 
 ## 📚 Aprendizado em Progresso
 
