@@ -1,5 +1,6 @@
 package com.vitoria.demo_api.web.exception;
 import com.vitoria.demo_api.exception.EntityNotFoundException;
+import com.vitoria.demo_api.exception.PasswordInvalidException;
 import com.vitoria.demo_api.exception.UsernameUniqueViolationException;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.extern.slf4j.Slf4j;
@@ -33,6 +34,18 @@ public class ApiExceptionHandler {
                 .status(HttpStatus.CONFLICT)
                 .contentType(MediaType.APPLICATION_JSON)
                 .body(new ErroMessage(request.getRequestURI(), request.getMethod(), HttpStatus.CONFLICT.value(), HttpStatus.CONFLICT.getReasonPhrase(), ex.getMessage(), null));
+
+    }
+
+
+    @ExceptionHandler(PasswordInvalidException.class)
+    public ResponseEntity<ErroMessage> passwordInvalidException(RuntimeException ex, HttpServletRequest request){
+
+        log.error("API ERROR - ",ex);
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .contentType(MediaType.APPLICATION_JSON)
+                .body(new ErroMessage(request.getRequestURI(), request.getMethod(), HttpStatus.BAD_REQUEST.value(), HttpStatus.BAD_REQUEST.getReasonPhrase(), ex.getMessage(), null));
 
     }
 

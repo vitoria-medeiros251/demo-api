@@ -44,7 +44,14 @@ public class UserController {
         User savedUser = userService.salvar(UserMapper.toUser(userCreateDTO));
         return ResponseEntity.status(HttpStatus.CREATED).body(UserMapper.toDTO(savedUser));
     }
-
+    @Operation(summary = "Recuperar um usuario ", description = "recuperar um usuario por id",
+            responses = {
+                    @ApiResponse(responseCode = "200", description = "Recurso recuperado com sucesso",
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = UserResponseDTO.class))),
+                    @ApiResponse(responseCode = "404", description = "Recurso não encontrado",
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErroMessage.class)))
+            }
+    )
 
     @GetMapping("/{id}")
    public ResponseEntity<UserResponseDTO> findById(@PathVariable Long id){
@@ -58,7 +65,16 @@ public class UserController {
         return ResponseEntity.ok(UserMapper.toListDto(savedUser));
 
     }
-
+    @Operation(summary = "Atualizar senha do usuario ", description = "Atualizar senha",
+            responses = {
+                    @ApiResponse(responseCode = "204", description = "Senha atualizada com sucesso",
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = void.class))),
+                    @ApiResponse(responseCode = "404", description = "Senha não confere ",
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErroMessage.class))),
+                    @ApiResponse(responseCode = "400", description = "Senha não confere",
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErroMessage.class)))
+            }
+    )
     @PatchMapping("/{id}")
     public ResponseEntity<Void> updatepassword(@PathVariable Long id,@Valid @RequestBody UserSenhaDTO dto){
         User savedUser = userService.EditarSenha(id, dto.getSenhaAtual(),dto.getNovaSenha(),dto.getConfirmaSenha());
