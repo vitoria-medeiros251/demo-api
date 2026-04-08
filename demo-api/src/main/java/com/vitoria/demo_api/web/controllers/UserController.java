@@ -72,7 +72,9 @@ public class UserController {
                     @ApiResponse(responseCode = "404", description = "Senha não confere ",
                             content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErroMessage.class))),
                     @ApiResponse(responseCode = "400", description = "Senha não confere",
-                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErroMessage.class)))
+                            content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErroMessage.class))),
+                    @ApiResponse(responseCode = "422",description = "Campos invalidos ou mal formatados",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = ErroMessage.class)))
             }
     )
     @PatchMapping("/{id}")
