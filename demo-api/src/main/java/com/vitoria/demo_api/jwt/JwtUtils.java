@@ -36,13 +36,11 @@ public class JwtUtils {
     }
 
     private static Date toExpireDate(Date date) {
-        LocalDateTime dateTime  = start.toInstant()
+        LocalDateTime dateTime  = date.toInstant()
                 .atZone(ZoneId.systemDefault())
                 .toLocalDateTime();
-        
         LocalDateTime end = dateTime.plusDays(EXPIRE_DAY).plusHours(EXPIRE_HOURS).plusMinutes(EXPIRE_MINUTES);
-        return Date.from(end.atZone(ZoneId.systemDefault()).toInstant()).toInstant());
-
+        return Date.from(end.atZone(ZoneId.systemDefault()).toInstant());
     }
 
     public static JwToken createToken(String username, String role) {
